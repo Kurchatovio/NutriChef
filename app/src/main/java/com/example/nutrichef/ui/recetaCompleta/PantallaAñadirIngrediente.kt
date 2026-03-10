@@ -226,8 +226,8 @@ fun PantallaAñadirIngrediente(
                             }
                             IconButton(
                                 onClick = {
-                                    // Solo quitamos de la lista temporal de esta pantalla,
-                                    // NO los borramos del ViewModel (para no liar más lógica ahora).
+                                    // Borramos de la lista temporal y del ViewModel (receta real)
+                                    viewModel.eliminarIngrediente(index)
                                     ingredientesTemp =
                                         ingredientesTemp.toMutableList().also { it.removeAt(index) }
                                 }
