@@ -308,17 +308,6 @@ fun PantallaCrearRecetaCompleta(
             }
 
 
-            item {
-                Button(
-                    onClick = { navController.navigate(RutasPantallas.AñadirPaso.ruta) },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(Icons.Default.Add, contentDescription = "Añadir Paso")
-                    Spacer(Modifier.width(8.dp))
-                    Text("Añadir paso")
-                }
-            }
-
             // ---------------- ETIQUETAS (FUTURO) ----------------
             item {
                 Text("Etiquetas", style = MaterialTheme.typography.titleMedium)
