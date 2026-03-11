@@ -157,10 +157,9 @@ class RecetaCompletaViewModel(
         _ingredientes.value = _ingredientes.value + nuevo
     }
 
-    fun eliminarIngrediente(index: Int) {
-        if (index !in _ingredientes.value.indices) return
-        _ingredientes.value = _ingredientes.value.toMutableList()
-            .also { it.removeAt(index) }
+    // Elimina un ingrediente de la receta por su ID único
+    fun eliminarIngrediente(ingredienteId: Int) {
+        _ingredientes.value = _ingredientes.value.filter { it.ingredienteId != ingredienteId }
     }
 
     fun obtenerNombreIngrediente(id: Int): String {
