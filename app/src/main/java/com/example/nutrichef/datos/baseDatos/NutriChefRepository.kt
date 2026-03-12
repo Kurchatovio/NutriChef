@@ -91,7 +91,8 @@ class NutriChefRepository private constructor(
         pasos: List<PasoReceta>,
         etiquetasIds: List<Int>
     ) {
-        val idReceta = receta.id ?: error("La receta no tiene ID, no se puede editar.")
+        // id=0 significa receta sin ID válido asignado (valor por defecto antes de guardar en BD)
+        val idReceta = receta.id.takeIf { it > 0 } ?: error("La receta no tiene ID válido, no se puede editar.")
 
         baseDatos.withTransaction {
 
