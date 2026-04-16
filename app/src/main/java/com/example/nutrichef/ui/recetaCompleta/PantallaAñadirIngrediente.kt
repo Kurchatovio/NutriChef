@@ -52,18 +52,21 @@ fun PantallaAñadirIngrediente(
     val ultimoIngredienteCreado by viewModel.ultimoIngredienteCreadoId.collectAsState()
     val nombreTemporal by viewModel.nombreIngredienteTemporal.collectAsState()
 
-    LaunchedEffect(ultimoIngredienteCreado) {
+
+    // Auto-selecciona el ingrediente recién creado cuando el catálogo ya lo tiene cargado
+    LaunchedEffect(ultimoIngredienteCreado, ingredientesBD) {
         // Si venimos de crear un ingrediente nuevo:
         if (ultimoIngredienteCreado != null) {
             val idNuevo = ultimoIngredienteCreado!!
-            ingredienteSeleccionado = idNuevo
-
-            // Si tenemos nombre temporal, lo ponemos en el buscador
-            textoBusqueda = nombreTemporal ?: ""
-
-            // Limpiamos los flags del ViewModel
-            viewModel.setUltimoIngredienteCreadoId(null)
-            viewModel.setNombreIngredienteTemporal("")
+            // Solo actuamos cuando el ingrediente ya está disponible en el catálogo
+            val existeEnCatalogo = ingredientesBD.any { it.id == idNuevo }
+            if (existeEnCatalogo) {
+                ingredienteSeleccionado = idNuevo
+                textoBusqueda = nombreTemporal ?: ""
+                // Limpiamos los flags del ViewModel
+                viewModel.setUltimoIngredienteCreadoId(null)
+                viewModel.setNombreIngredienteTemporal("")
+            }
         }
     }
 
@@ -135,20 +138,45 @@ fun PantallaAñadirIngrediente(
                 modifier = Modifier.heightIn(max = 250.dp)
             ) {
                 itemsIndexed(resultados) { _, ing ->
+                    val estaSeleccionado = ingredienteSeleccionado == ing.id
+                    val unidad = viewModel.obtenerAbreviaturaDeIngrediente(ing.medidaId)
+
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
-                            // Seleccionamos este ingrediente
                             ingredienteSeleccionado = ing.id
                             textoBusqueda = ing.nombre
-                        }
+                        },
+                        // Resalta visualmente el ingrediente seleccionado
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (estaSeleccionado)
+                                MaterialTheme.colorScheme.primaryContainer
+                            else
+                                MaterialTheme.colorScheme.surface
+                        )
                     ) {
                         Row(
-                            modifier = Modifier.padding(12.dp),
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(ing.nombre)
-                            // Puedes añadir un indicador si quieres marcar el seleccionado
+                            // Nombre del ingrediente
+                            Text(
+                                ing.nombre,
+                                color = if (estaSeleccionado)
+                                    MaterialTheme.colorScheme.onPrimaryContainer
+                                else
+                                    MaterialTheme.colorScheme.onSurface
+                            )
+                            // Unidad de medida
+                            if (unidad.isNotBlank()) {
+                                Text(
+                                    unidad,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
                         }
                     }
                 }
@@ -222,7 +250,10 @@ fun PantallaAñadirIngrediente(
                         ) {
                             Column {
                                 Text(triple.second)
-                                Text("Cantidad: ${triple.third}")
+                                val unidadCompleta = viewModel.obtenerUnidadDeIngrediente(triple.first.let { id ->
+                                    viewModel.todosIngredientes.value.find { it.id == id }?.medidaId
+                                })
+                                Text("${triple.third} $unidadCompleta".trim())
                             }
                             IconButton(
                                 onClick = {
