@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.example.nutrichef.util.obtenerNombreMedida
+import com.example.nutrichef.util.obtenerAbreviraturaMedida
 
 class RecetaCompletaViewModel(
     private val repositorio: NutriChefRepository
@@ -166,21 +168,14 @@ class RecetaCompletaViewModel(
         return todosIngredientes.value.find { it.id == id }?.nombre ?: "Ingrediente $id"
     }
 
-    // Unidad a partir de medidaId
-    fun obtenerUnidadDeIngrediente(medidaId: Int?): String {
-        medidaId ?: return ""
-        val medida = todasLasMedidas.value.find { it.id == medidaId }
-        return medida?.nombre ?: ""
-    }
+    // Delega en MedidaUtils — devuelve nombre de la unidad completo: "mililitros (ml)"
+    fun obtenerUnidadDeIngrediente(medidaId: Int?): String =
+        obtenerNombreMedida(medidaId, todasLasMedidas.value)
 
-    // Devuelve la abreviatura de la medida, extraída entre paréntesis
-    // Ej: "gramos (g)" → "g", "mililitros (ml)" → "ml", "taza" → "taza"
-    fun obtenerAbreviaturaDeIngrediente(medidaId: Int?): String {
-        medidaId ?: return ""
-        val nombreCompleto = todasLasMedidas.value.find { it.id == medidaId }?.nombre ?: return ""
-        val regex = Regex("\\(([^)]+)\\)")
-        return regex.find(nombreCompleto)?.groupValues?.get(1) ?: nombreCompleto
-    }
+    // Delega en MedidaUtils — devuelve nombre unidad como abreviatura: "ml"
+    fun obtenerAbreviaturaDeIngrediente(medidaId: Int?): String =
+        obtenerAbreviraturaMedida(medidaId, todasLasMedidas.value)
+
 
     // =====================================================
     //            MANEJO DE PASOS

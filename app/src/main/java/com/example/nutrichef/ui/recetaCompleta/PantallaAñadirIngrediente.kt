@@ -61,8 +61,11 @@ fun PantallaAñadirIngrediente(
             // Solo actuamos cuando el ingrediente ya está disponible en el catálogo
             val existeEnCatalogo = ingredientesBD.any { it.id == idNuevo }
             if (existeEnCatalogo) {
+                // Buscamos el nombre directamente del catálogo, no del nombre temporal
+                // (el nombre temporal puede haberse limpiado antes de llegar aquí)
+                val nombreIngrediente = ingredientesBD.find { it.id == idNuevo }?.nombre ?: ""
                 ingredienteSeleccionado = idNuevo
-                textoBusqueda = nombreTemporal ?: ""
+                textoBusqueda = nombreIngrediente
                 // Limpiamos los flags del ViewModel
                 viewModel.setUltimoIngredienteCreadoId(null)
                 viewModel.setNombreIngredienteTemporal("")

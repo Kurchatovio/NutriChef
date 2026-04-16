@@ -85,6 +85,7 @@ fun PantallaListaIngredientes(
                 items(ingredientes) { ingrediente ->
                     IngredienteItem(
                         ingrediente = ingrediente,
+                        abreviatura = viewModel.obtenerAbreviaturaDeIngrediente(ingrediente.medidaId),
                         onClick = {
                             navController.navigate(
                                 RutasPantallas.DetalleIngrediente.crearRuta(ingrediente.id)
@@ -100,6 +101,7 @@ fun PantallaListaIngredientes(
 @Composable
 fun IngredienteItem(
     ingrediente: Ingrediente,
+    abreviatura: String,
     onClick: () -> Unit
 ) {
     Card(
@@ -110,10 +112,23 @@ fun IngredienteItem(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
 
-            Text(
-                text = ingrediente.nombre,
-                style = MaterialTheme.typography.titleLarge
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = ingrediente.nombre,
+                    style = MaterialTheme.typography.titleLarge
+                )
+                // Abreviatura de la unidad de medida base del ingrediente
+                if (abreviatura.isNotBlank()) {
+                    Text(
+                        text = abreviatura,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
 
             ingrediente.descripcion?.let {
                 Text(

@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.example.nutrichef.util.obtenerNombreMedida
+import com.example.nutrichef.util.obtenerAbreviraturaMedida
 
 /**
  * ViewModel encargado de la lógica relacionada con los ingredientes.
@@ -32,12 +34,20 @@ class IngredientesViewModel(
     private val _medidas = MutableStateFlow<List<Medida>>(emptyList())
     val medidas: StateFlow<List<Medida>> = _medidas.asStateFlow()
 
+
+    // Precarga ingredientes y medidas al crearse el ViewModel
+    init {
+        cargarIngredientes()
+        cargarMedidas()
+    }
+
     // -------------------------------------------------------------
     //                      FUNCIONES PÚBLICAS
     // -------------------------------------------------------------
 
     /** Carga todos los ingredientes en la base de datos. */
     fun cargarIngredientes() {
+
         viewModelScope.launch {
             _ingredientes.value = repositorio.obtenerTodosLosIngredientes()
         }
@@ -56,6 +66,10 @@ class IngredientesViewModel(
             _medidas.value = repositorio.obtenerTodasLasMedidas()
         }
     }
+
+    // Devuelve la abreviatura de la medida de un ingrediente
+    fun obtenerAbreviaturaDeIngrediente(medidaId: Int): String =
+        obtenerAbreviraturaMedida(medidaId, _medidas.value)
 
     /**
      * Inserta un ingrediente en BD y devuelve el ID autogenerado.
