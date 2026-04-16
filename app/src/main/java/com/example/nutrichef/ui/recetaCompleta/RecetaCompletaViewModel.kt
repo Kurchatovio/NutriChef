@@ -166,11 +166,20 @@ class RecetaCompletaViewModel(
         return todosIngredientes.value.find { it.id == id }?.nombre ?: "Ingrediente $id"
     }
 
-    // Unidad a partir de medidaId (corregido)
+    // Unidad a partir de medidaId
     fun obtenerUnidadDeIngrediente(medidaId: Int?): String {
         medidaId ?: return ""
         val medida = todasLasMedidas.value.find { it.id == medidaId }
         return medida?.nombre ?: ""
+    }
+
+    // Devuelve la abreviatura de la medida, extraída entre paréntesis
+    // Ej: "gramos (g)" → "g", "mililitros (ml)" → "ml", "taza" → "taza"
+    fun obtenerAbreviaturaDeIngrediente(medidaId: Int?): String {
+        medidaId ?: return ""
+        val nombreCompleto = todasLasMedidas.value.find { it.id == medidaId }?.nombre ?: return ""
+        val regex = Regex("\\(([^)]+)\\)")
+        return regex.find(nombreCompleto)?.groupValues?.get(1) ?: nombreCompleto
     }
 
     // =====================================================
