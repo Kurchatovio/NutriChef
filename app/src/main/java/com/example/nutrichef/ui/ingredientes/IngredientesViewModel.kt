@@ -111,4 +111,8 @@ class IngredientesViewModel(
             cargarIngredientes()
         }
     }
+
+    // Comprueba si un ingrediente está siendo usado en alguna receta
+    suspend fun ingredienteEstaEnUso(id: Int): Boolean =
+        repositorio.ingredienteEstaEnUso(id)
 }

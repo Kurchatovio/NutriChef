@@ -38,6 +38,9 @@ fun PantallaCrearIngrediente(
 
     var descripcion by remember { mutableStateOf("") }
 
+    // Estado para el diálogo de confirmación al editar ingrediente en uso
+    var mostrarDialogoConfirmacion by remember { mutableStateOf(false) }
+
     // Medidas
     LaunchedEffect(Unit) {
         viewModel.cargarMedidas()
@@ -58,14 +61,17 @@ fun PantallaCrearIngrediente(
         }
     }
     val ingredienteEnEdicion by viewModel.ingredienteEnEdicion.collectAsState()
-// Cuando se carga el ingrediente, rellenamos los campos
-    LaunchedEffect(ingredienteEnEdicion) {
+
+    // Cuando se carga el ingrediente, rellenamos los campos
+    LaunchedEffect(ingredienteEnEdicion, medidas) {
         ingredienteEnEdicion?.let { ing ->
             nombre = ing.nombre
             descripcion = ing.descripcion ?: ""
             proteinas = ing.proteinasPorMedida?.toString() ?: ""
             carbohidratos = ing.carbohidratosPorMedida?.toString() ?: ""
             grasas = ing.grasasPorMedida?.toString() ?: ""
+            // Seleccionamos la medida correspondiente en el dropdown
+            medidaSeleccionada = medidas.find { it.id == ing.medidaId }
         }
     }
 
@@ -77,6 +83,50 @@ fun PantallaCrearIngrediente(
             "cantidad" -> "Valores por unidad"
             else -> null
         }
+    }
+
+    if (mostrarDialogoConfirmacion) {
+        AlertDialog(
+            onDismissRequest = { mostrarDialogoConfirmacion = false },
+            title = { Text("Ingrediente en uso") },
+            text = { Text(
+                "Este ingrediente se encuentra actualmente en uso en una o más recetas. " +
+                        "Los cambios afectarán a todas ellas.\n\n¿Deseas continuar?"
+            )
+                   },
+            confirmButton = {
+                TextButton(onClick = {
+                    mostrarDialogoConfirmacion = false
+                    // Guardamos directamente sin volver a comprobar
+                    scope.launch {
+                        try {
+                            viewModel.actualizarIngrediente(
+                                Ingrediente(
+                                    id = ingredienteId!!,
+                                    nombre = nombre,
+                                    descripcion = descripcion.ifBlank { null },
+                                    medidaId = medidaSeleccionada!!.id,
+                                    proteinasPorMedida = proteinas.toDoubleOrNull(),
+                                    carbohidratosPorMedida = carbohidratos.toDoubleOrNull(),
+                                    grasasPorMedida = grasas.toDoubleOrNull(),
+                                    imagenUri = null
+                                )
+                            )
+                            navController.popBackStack()
+                        } catch (e: Exception) {
+                            snackbarHostState.showSnackbar("Error al guardar ingrediente.")
+                        }
+                    }
+                }) {
+                    Text("Sí, continuar")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { mostrarDialogoConfirmacion = false }) {
+                    Text("Cancelar")
+                }
+            }
+        )
     }
 
     Scaffold(
@@ -231,10 +281,16 @@ fun PantallaCrearIngrediente(
                     scope.launch {
                         try {
                             if (ingredienteId != null) {
-                                // Modo editar — actualizamos el ingrediente existente
-                                viewModel.actualizarIngrediente(nuevo.copy(id = ingredienteId))
-                                navController.popBackStack()
-                            } else {
+                                // Modo editar — comprobamos si está en uso antes de guardar
+                                val estaEnUso = viewModel.ingredienteEstaEnUso(ingredienteId)
+                                if (estaEnUso) {
+                                    mostrarDialogoConfirmacion = true
+                                } else {
+                                    viewModel.actualizarIngrediente(nuevo.copy(id = ingredienteId))
+                                    navController.popBackStack()
+                                }
+                            }
+                            else {
                                 // Modo crear — insertamos nuevo ingrediente
                                 val nuevoId = viewModel.insertarIngrediente(nuevo)
                                 if (recetaViewModel != null) {

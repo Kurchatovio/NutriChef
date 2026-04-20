@@ -148,18 +148,6 @@ fun PantallaDetalleIngrediente(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // BOTÓN EDITAR
-                Button(
-                    onClick = {
-                        navController.navigate(
-                            RutasPantallas.EditarIngrediente.crearRuta(ingredienteId)
-                        )
-                    },
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("Editar")
-                }
-
                 // BOTÓN ELIMINAR
                 Button(
                     onClick = { mostrarDialogoEliminar = true },
@@ -170,6 +158,18 @@ fun PantallaDetalleIngrediente(
                     )
                 ) {
                     Text("Eliminar")
+                }
+
+                // BOTÓN EDITAR
+                Button(
+                    onClick = {
+                        navController.navigate(
+                            RutasPantallas.EditarIngrediente.crearRuta(ingredienteId)
+                        )
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("Editar")
                 }
             }
 
