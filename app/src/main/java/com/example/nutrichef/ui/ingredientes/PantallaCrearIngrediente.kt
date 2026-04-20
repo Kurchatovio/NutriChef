@@ -17,8 +17,10 @@ import kotlinx.coroutines.launch
 fun PantallaCrearIngrediente(
     navController: NavHostController,
     viewModel: IngredientesViewModel,
-    recetaViewModel: RecetaCompletaViewModel? = null   // null cuando venimos de "Lista ingredientes"
-) {
+    recetaViewModel: RecetaCompletaViewModel? = null,   // null cuando venimos de "Lista ingredientes"
+    ingredienteId: Int? = null  // null = modo crear, valor = modo editar
+)
+{
     // ------------------------------------------------------------
     // Snackbar + corrutina para mensajes y operaciones suspend
     // ------------------------------------------------------------
@@ -48,6 +50,24 @@ fun PantallaCrearIngrediente(
     var carbohidratos by remember { mutableStateOf("") }
     var grasas by remember { mutableStateOf("") }
     var proteinas by remember { mutableStateOf("") }
+
+    // Si estamos en modo editar, cargamos los datos del ingrediente existente
+    LaunchedEffect(ingredienteId) {
+        if (ingredienteId != null) {
+            viewModel.cargarIngredientePorId(ingredienteId)
+        }
+    }
+    val ingredienteEnEdicion by viewModel.ingredienteEnEdicion.collectAsState()
+// Cuando se carga el ingrediente, rellenamos los campos
+    LaunchedEffect(ingredienteEnEdicion) {
+        ingredienteEnEdicion?.let { ing ->
+            nombre = ing.nombre
+            descripcion = ing.descripcion ?: ""
+            proteinas = ing.proteinasPorMedida?.toString() ?: ""
+            carbohidratos = ing.carbohidratosPorMedida?.toString() ?: ""
+            grasas = ing.grasasPorMedida?.toString() ?: ""
+        }
+    }
 
     // Texto informativo según tipo de medida
     val textoUnidadMacros = remember(medidaSeleccionada) {
@@ -210,20 +230,17 @@ fun PantallaCrearIngrediente(
                     // Llamamos a la función suspend del ViewModel dentro de una corrutina
                     scope.launch {
                         try {
-                            // Esta función la tienes como:
-                            // suspend fun insertarIngrediente(ingrediente: Ingrediente): Long
-                            val nuevoId = viewModel.insertarIngrediente(nuevo)
-
-                            // Si venimos desde la creación de receta:
-                            if (recetaViewModel != null) {
-                                // Informamos a RecetaCompletaViewModel para que la subpantalla lo seleccione
-                                recetaViewModel.setUltimoIngredienteCreadoId(nuevoId.toInt())
-                                // Limpiamos el nombre temporal
-                                recetaViewModel.setNombreIngredienteTemporal("")
-                                // Volvemos a PantallaAñadirIngrediente
+                            if (ingredienteId != null) {
+                                // Modo editar — actualizamos el ingrediente existente
+                                viewModel.actualizarIngrediente(nuevo.copy(id = ingredienteId))
                                 navController.popBackStack()
                             } else {
-                                // Si venimos desde ListaIngredientes normal, solo volvemos atrás
+                                // Modo crear — insertamos nuevo ingrediente
+                                val nuevoId = viewModel.insertarIngrediente(nuevo)
+                                if (recetaViewModel != null) {
+                                    recetaViewModel.setUltimoIngredienteCreadoId(nuevoId.toInt())
+                                    recetaViewModel.setNombreIngredienteTemporal("")
+                                }
                                 navController.popBackStack()
                             }
                         } catch (e: Exception) {

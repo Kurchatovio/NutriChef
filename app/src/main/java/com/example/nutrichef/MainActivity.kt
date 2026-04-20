@@ -180,6 +180,24 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+                        // ---------------- EDITAR INGREDIENTE ----------------
+                        composable(
+                            route = RutasPantallas.EditarIngrediente.ruta,
+                            arguments = listOf(
+                                navArgument("idIngrediente") { type = NavType.IntType }
+                            )
+                        ) { backStackEntry ->
+                            val id = backStackEntry.arguments!!.getInt("idIngrediente")
+                            val vm: IngredientesViewModel = viewModel(
+                                factory = IngredientesViewModelFactory(repositorio)
+                            )
+                            PantallaCrearIngrediente(
+                                navController = navController,
+                                viewModel = vm,
+                                ingredienteId = id
+                            )
+                        }
+
                         // ---- SUBPANTALLA: AÑADIR INGREDIENTE A RECETA ----
                         composable(RutasPantallas.AñadirIngrediente.ruta) {
                             PantallaAñadirIngrediente(

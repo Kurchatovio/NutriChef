@@ -50,6 +50,10 @@ sealed class RutasPantallas(val ruta: String) {
         fun crearRuta(idIngrediente: Int) = "detalle_ingrediente/$idIngrediente"
     }
 
+    // Editar un ingrediente existente
+    object EditarIngrediente : RutasPantallas("editar_ingrediente/{idIngrediente}") {
+        fun crearRuta(idIngrediente: Int) = "editar_ingrediente/$idIngrediente"
+    }
 
 
     // ----------------------------

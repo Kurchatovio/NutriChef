@@ -34,6 +34,10 @@ class IngredientesViewModel(
     private val _medidas = MutableStateFlow<List<Medida>>(emptyList())
     val medidas: StateFlow<List<Medida>> = _medidas.asStateFlow()
 
+    // Ingrediente cargado para edición (null si estamos en modo crear)
+    private val _ingredienteEnEdicion = MutableStateFlow<Ingrediente?>(null)
+    val ingredienteEnEdicion: StateFlow<Ingrediente?> = _ingredienteEnEdicion.asStateFlow()
+
 
     // Precarga ingredientes y medidas al crearse el ViewModel
     init {
@@ -64,6 +68,13 @@ class IngredientesViewModel(
     fun cargarMedidas() {
         viewModelScope.launch {
             _medidas.value = repositorio.obtenerTodasLasMedidas()
+        }
+    }
+
+    // Carga un ingrediente específico por ID para modo edición
+    fun cargarIngredientePorId(id: Int) {
+        viewModelScope.launch {
+            _ingredienteEnEdicion.value = repositorio.obtenerIngredientePorId(id)
         }
     }
 

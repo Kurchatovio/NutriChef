@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.nutrichef.ui.componentes.BarraSuperiorConBack
+import com.example.nutrichef.ui.navegacion.RutasPantallas
 import com.example.nutrichef.ui.textos.MensajesIngrediente
 
 @Composable
@@ -123,11 +124,14 @@ fun PantallaDetalleIngrediente(
                 Text(it, style = MaterialTheme.typography.bodyMedium)
             }
 
-            // Unidad base (luego la mejoraremos para mostrar nombre de medida)
-            Text(
-                "Unidad base: ID ${ing.medidaId} (detalle luego)",
-                style = MaterialTheme.typography.bodySmall
-            )
+            // Unidad base (nombre y medida)
+            val nombreMedida by viewModel.nombreMedida.collectAsState()
+            if (nombreMedida.isNotBlank()) {
+                Text(
+                    "Unidad base: $nombreMedida",
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
 
             Divider()
 
@@ -139,16 +143,34 @@ fun PantallaDetalleIngrediente(
 
             Spacer(Modifier.height(20.dp))
 
-            // BOTÓN ELIMINAR
-            Button(
-                onClick = { mostrarDialogoEliminar = true },
+
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.errorContainer,
-                    contentColor = MaterialTheme.colorScheme.onErrorContainer
-                )
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text("Eliminar")
+                // BOTÓN EDITAR
+                Button(
+                    onClick = {
+                        navController.navigate(
+                            RutasPantallas.EditarIngrediente.crearRuta(ingredienteId)
+                        )
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("Editar")
+                }
+
+                // BOTÓN ELIMINAR
+                Button(
+                    onClick = { mostrarDialogoEliminar = true },
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer,
+                        contentColor = MaterialTheme.colorScheme.onErrorContainer
+                    )
+                ) {
+                    Text("Eliminar")
+                }
             }
 
         }

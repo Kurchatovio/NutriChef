@@ -15,9 +15,18 @@ class DetalleIngredienteViewModel(
     private val _ingrediente = MutableStateFlow<Ingrediente?>(null)
     val ingrediente: StateFlow<Ingrediente?> = _ingrediente
 
+    private val _nombreMedida = MutableStateFlow("")
+    val nombreMedida: StateFlow<String> = _nombreMedida
+
     fun cargarIngrediente(idIngrediente: Int) {
         viewModelScope.launch {
-            _ingrediente.value = repositorio.obtenerIngredientePorId(idIngrediente)
+            val ing = repositorio.obtenerIngredientePorId(idIngrediente)
+            _ingrediente.value = ing
+            // Cargamos también el nombre de la medida
+            ing?.let {
+                val medida = repositorio.obtenerMedidaPorId(it.medidaId)
+                _nombreMedida.value = medida?.nombre ?: ""
+            }
         }
     }
 
