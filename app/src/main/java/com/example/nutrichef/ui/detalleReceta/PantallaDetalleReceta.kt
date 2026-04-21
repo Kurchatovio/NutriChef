@@ -33,6 +33,7 @@ fun PantallaDetalleReceta(
     val ingredientes by viewModel.ingredientes.collectAsState()
     val pasos by viewModel.pasos.collectAsState()
     val eliminacionOk by viewModel.eliminacionOk.collectAsState()
+    val resumenNutricional by viewModel.resumenNutricional.collectAsState()
 
     // Estado para mostrar el diálogo
     var mostrarDialogoEliminar by remember { mutableStateOf(false) }
@@ -113,12 +114,29 @@ fun PantallaDetalleReceta(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            // ------- NOMBRE + DESCRIPCIÓN -------
+            // ------- NOMBRE + DESCRIPCIÓN + PORCIONES + TIEMPO -------
             item {
                 Text(receta!!.nombre, style = MaterialTheme.typography.headlineMedium)
                 receta!!.descripcion?.let {
                     Spacer(Modifier.height(4.dp))
                     Text(it, style = MaterialTheme.typography.bodyLarge)
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    receta!!.porciones?.let {
+                        Text(
+                            "🍽 $it porciones",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                    receta!!.tiempoPreparacionMin?.let {
+                        Text(
+                            "⏱ $it min",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
                 }
             }
 
@@ -130,6 +148,51 @@ fun PantallaDetalleReceta(
             items(ingredientes) { ing ->
                 Text("- ${ing.nombre}: ${ing.cantidad} ${ing.unidad}")
             }
+
+
+            // ---------------- INFORMACIÓN NUTRICIONAL ----------------
+            resumenNutricional?.let { resumen ->
+                item {
+                    Divider()
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        "Información nutricional",
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    if (!resumen.completo) {
+                        Text(
+                            "⚠ Algunos ingredientes no tienen macros definidos. " +
+                                    "Los valores mostrados son aproximados.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    val porciones = receta!!.porciones?.takeIf { it > 0 } ?: 1
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column {
+                            Text("Total", style = MaterialTheme.typography.labelMedium)
+                            Text("Calorías: ${"%.0f".format(resumen.proteinas * 4 + resumen.carbohidratos * 4 + resumen.grasas * 9)} kcal")
+                            Text("Proteínas: ${"%.1f".format(resumen.proteinas)} g")
+                            Text("Carbohidratos: ${"%.1f".format(resumen.carbohidratos)} g")
+                            Text("Grasas: ${"%.1f".format(resumen.grasas)} g")
+                        }
+                        Column {
+                            Text("Por porción", style = MaterialTheme.typography.labelMedium)
+                            Text("Calorías: ${"%.0f".format((resumen.proteinas * 4 + resumen.carbohidratos * 4 + resumen.grasas * 9) / porciones)} kcal")
+                            Text("Proteínas: ${"%.1f".format(resumen.proteinas / porciones)} g")
+                            Text("Carbohidratos: ${"%.1f".format(resumen.carbohidratos / porciones)} g")
+                            Text("Grasas: ${"%.1f".format(resumen.grasas / porciones)} g")
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    Divider()
+                }
+            }
+
 
             // ------------------- PASOS -------------------
             item {

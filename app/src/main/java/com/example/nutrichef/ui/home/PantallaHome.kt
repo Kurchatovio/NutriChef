@@ -19,6 +19,7 @@ fun PantallaHome(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .statusBarsPadding()
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
