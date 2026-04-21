@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import com.example.nutrichef.util.obtenerNombreMedida
 import com.example.nutrichef.util.obtenerAbreviraturaMedida
+import com.example.nutrichef.util.sinAcentos
 
 /**
  * ViewModel encargado de la lógica relacionada con los ingredientes.
@@ -57,10 +58,14 @@ class IngredientesViewModel(
         }
     }
 
-    /** Busca ingredientes cuyo nombre coincida parcialmente con el texto. */
+
+    // Busca ingredientes ignorando acentos y mayúsculas
     fun buscarIngredientes(texto: String) {
         viewModelScope.launch {
-            _ingredientes.value = repositorio.buscarIngredientesPorNombre(texto)
+            val todos = repositorio.obtenerTodosLosIngredientes()
+            _ingredientes.value = todos.filter {
+                it.nombre.sinAcentos().contains(texto.sinAcentos(), ignoreCase = true)
+            }
         }
     }
 
