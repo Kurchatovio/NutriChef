@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import com.example.nutrichef.util.obtenerNombreMedida
 import com.example.nutrichef.util.obtenerAbreviraturaMedida
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.SharingStarted
 
 class RecetaCompletaViewModel(
     private val repositorio: NutriChefRepository
@@ -22,7 +25,21 @@ class RecetaCompletaViewModel(
     // =====================================================
     //   ID DE RECETA EN EDICIÓN (null = modo CREAR)
     // =====================================================
-    private var recetaIdEnEdicion: Int? = null
+    // _recetaIdEnEdicion es la fuente de verdad: null = modo crear, valor = modo editar
+    private val _recetaIdEnEdicion = MutableStateFlow<Int?>(null)
+
+    // Propiedad que redirige las lecturas y escrituras al StateFlow
+    // Así el resto del ViewModel sigue usando recetaIdEnEdicion como antes
+    private var recetaIdEnEdicion: Int?
+        get() = _recetaIdEnEdicion.value
+        set(value) { _recetaIdEnEdicion.value = value }
+
+    // StateFlow observable que la UI usa para saber si está en modo edición
+    // Se actualiza automáticamente cuando cambia recetaIdEnEdicion
+    val esModoEdicion: StateFlow<Boolean> = _recetaIdEnEdicion.map { it != null }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, false)
+    // Indica si estamos en modo edición (tiene ID) o creación (null)
+    fun esModoEdicion(): Boolean = recetaIdEnEdicion != null
 
     // 🔥 NUEVO: para no recargar desde BD varias veces
     private var datosInicialesCargados: Boolean = false

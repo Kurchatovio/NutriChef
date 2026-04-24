@@ -78,8 +78,9 @@ fun PantallaCrearRecetaCompleta(
 
     Scaffold(
         topBar = {
+            val esModoEdicion by viewModel.esModoEdicion.collectAsState()
             BarraSuperiorConBack(
-                titulo = "Crear / Editar receta",
+                titulo = if (esModoEdicion) "Editar receta" else "Crear receta",
                 onBack = { mostrarDialogoSalir = true }
             )
         },
