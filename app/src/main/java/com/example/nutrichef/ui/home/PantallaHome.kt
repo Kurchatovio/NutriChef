@@ -1,10 +1,16 @@
 package com.example.nutrichef.ui.home
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -15,6 +21,20 @@ fun PantallaHome(
     navController: NavHostController,
     onCrearReceta: () -> Unit
 ) {
+    var mostrarDialogoProximamente by remember { mutableStateOf(false) }
+
+    if (mostrarDialogoProximamente) {
+        AlertDialog(
+            onDismissRequest = { mostrarDialogoProximamente = false },
+            title = { Text("Próximamente") },
+            text = { Text("Esta funcionalidad está en desarrollo y estará disponible en una próxima versión.") },
+            confirmButton = {
+                TextButton(onClick = { mostrarDialogoProximamente = false }) {
+                    Text("Entendido")
+                }
+            }
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -63,7 +83,7 @@ fun PantallaHome(
         // Botón: Lista de etiquetas
         Button(
             onClick = {
-                navController.navigate(RutasPantallas.Etiquetas.ruta)
+                 mostrarDialogoProximamente = true
             },
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -73,7 +93,7 @@ fun PantallaHome(
         // Botón: Lista de libros (cookbooks)
         Button(
             onClick = {
-                navController.navigate(RutasPantallas.Libros.ruta)
+                mostrarDialogoProximamente = true
             },
             modifier = Modifier.fillMaxWidth()
         ) {
