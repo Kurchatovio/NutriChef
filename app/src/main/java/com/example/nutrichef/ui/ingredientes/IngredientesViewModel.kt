@@ -83,6 +83,11 @@ class IngredientesViewModel(
         }
     }
 
+    // Limpia el ingrediente en edición para evitar datos residuales al crear uno nuevo
+    fun limpiarIngredienteEnEdicion() {
+        _ingredienteEnEdicion.value = null
+    }
+
     // Devuelve la abreviatura de la medida de un ingrediente
     fun obtenerAbreviaturaDeIngrediente(medidaId: Int): String =
         obtenerAbreviraturaMedida(medidaId, _medidas.value)

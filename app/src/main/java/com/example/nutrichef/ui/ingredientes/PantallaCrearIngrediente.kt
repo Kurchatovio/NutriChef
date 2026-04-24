@@ -58,6 +58,9 @@ fun PantallaCrearIngrediente(
     LaunchedEffect(ingredienteId) {
         if (ingredienteId != null) {
             viewModel.cargarIngredientePorId(ingredienteId)
+        } else {
+            // Modo crear — limpiamos cualquier dato residual de una edición anterior
+            viewModel.limpiarIngredienteEnEdicion()
         }
     }
     val ingredienteEnEdicion by viewModel.ingredienteEnEdicion.collectAsState()
