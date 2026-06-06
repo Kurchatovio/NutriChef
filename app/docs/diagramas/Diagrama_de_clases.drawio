@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="O1MQCzL2M63IscZ40vG5">
-    <mxGraphModel dx="1501" dy="834" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="858" dy="476" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -81,7 +81,7 @@
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-17" parent="PWHWsGKBVDAyTPzOsEWe-16" style="text;strokeColor=light-dark(#000000,#4F4155);fillColor=light-dark(#392F3F,#E8BEFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="+uiState: StateFlow&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="170" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="PWHWsGKBVDAyTPzOsEWe-18" parent="PWHWsGKBVDAyTPzOsEWe-16" style="text;strokeColor=light-dark(#9673A6,#4F4155);fillColor=light-dark(#E1D5E7,#E8BBFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="+GuardarReceta()&lt;div&gt;+resetearestado()&lt;/div&gt;&lt;div&gt;+cargarRecetaParaEdicion()&lt;/div&gt;" vertex="1">
+        <mxCell id="PWHWsGKBVDAyTPzOsEWe-18" parent="PWHWsGKBVDAyTPzOsEWe-16" style="text;strokeColor=light-dark(#9673A6,#4F4155);fillColor=light-dark(#E1D5E7,#E8BBFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="+guardarReceta()&lt;div&gt;+resetearEstado()&lt;/div&gt;&lt;div&gt;+cargarRecetaParaEdicion()&lt;/div&gt;" vertex="1">
           <mxGeometry height="58" width="170" y="52" as="geometry" />
         </mxCell>
         <mxCell id="hOv0oNcvejVndZp0jju7-2" edge="1" parent="1" source="PWHWsGKBVDAyTPzOsEWe-19" style="edgeStyle=none;shape=connector;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="PWHWsGKBVDAyTPzOsEWe-37">
@@ -102,7 +102,7 @@
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-22" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E1D5E7,#9A76A4);strokeColor=light-dark(#9673A6,#4F4155);fontColor=light-dark(#000000,#000000);" value="DetalleRecetaViewModel" vertex="1">
           <mxGeometry height="90" width="160" x="350" y="350" as="geometry" />
         </mxCell>
-        <mxCell id="PWHWsGKBVDAyTPzOsEWe-23" parent="PWHWsGKBVDAyTPzOsEWe-22" style="text;strokeColor=light-dark(#000000,#4F4155);fillColor=light-dark(#392F3F,#E8BEFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+recetas: StateFlow&amp;nbsp;&lt;/div&gt;" vertex="1">
+        <mxCell id="PWHWsGKBVDAyTPzOsEWe-23" parent="PWHWsGKBVDAyTPzOsEWe-22" style="text;strokeColor=light-dark(#000000,#4F4155);fillColor=light-dark(#392F3F,#E8BEFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+receta: StateFlow&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="160" y="26" as="geometry" />
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-24" parent="PWHWsGKBVDAyTPzOsEWe-22" style="text;strokeColor=light-dark(#9673A6,#4F4155);fillColor=light-dark(#E1D5E7,#E8BBFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="+cargarReceta()&amp;nbsp;&lt;div&gt;+eliminar()&lt;/div&gt;" vertex="1">
