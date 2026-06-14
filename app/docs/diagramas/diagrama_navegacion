@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="PnJArIZ-djZ_AAhISy8A">
-    <mxGraphModel dx="1201" dy="667" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1413" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -10,8 +10,14 @@
         <mxCell id="qVP6cXRz635sdXnLdzKI-2" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#0F6E56;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Lista recetas" vertex="1">
           <mxGeometry height="54" width="151" x="92" y="143" as="geometry" />
         </mxCell>
+        <mxCell id="-Z9CZDoB3Z7rr5CSmFRe-1" edge="1" parent="1" source="qVP6cXRz635sdXnLdzKI-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="qVP6cXRz635sdXnLdzKI-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-3" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#0F6E56;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Crear / editar receta&#xa;pantalla compartida" vertex="1">
           <mxGeometry height="78" width="202" x="66.5" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="-Z9CZDoB3Z7rr5CSmFRe-2" edge="1" parent="1" source="qVP6cXRz635sdXnLdzKI-4" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="qVP6cXRz635sdXnLdzKI-8">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-4" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#0F6E56;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Lista ingredientes" vertex="1">
           <mxGeometry height="54" width="185" x="623" y="143" as="geometry" />
@@ -26,16 +32,16 @@
           <mxGeometry height="54" width="159" x="88" y="247" as="geometry" />
         </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-8" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#185FA5;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Añadir ingrediente" vertex="1">
-          <mxGeometry height="54" width="190" x="53" y="520" as="geometry" />
+          <mxGeometry height="54" width="190" x="240" y="520" as="geometry" />
         </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-9" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#185FA5;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Añadir paso" vertex="1">
-          <mxGeometry height="54" width="145" x="306" y="520" as="geometry" />
+          <mxGeometry height="54" width="145" x="66.5" y="520" as="geometry" />
         </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-10" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#185FA5;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Detalle ingrediente" vertex="1">
-          <mxGeometry height="54" width="193" x="619" y="247" as="geometry" />
+          <mxGeometry height="54" width="193" x="619" y="280" as="geometry" />
         </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-11" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#993C1D;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Crear ingrediente" vertex="1">
-          <mxGeometry height="54" width="184" x="56" y="630" as="geometry" />
+          <mxGeometry height="54" width="184" x="243" y="620" as="geometry" />
         </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-12" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#993C1D;strokeColor=light-dark(#999999,#cccccc);fontColor=#fff;" value="Editar ingrediente" vertex="1">
           <mxGeometry height="54" width="185" x="623" y="387" as="geometry" />
@@ -79,17 +85,9 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qVP6cXRz635sdXnLdzKI-19" edge="1" parent="1" source="qVP6cXRz635sdXnLdzKI-3" style="curved=1;startArrow=none;endArrow=block;exitX=0.417;exitY=1.01;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="qVP6cXRz635sdXnLdzKI-8" value="">
+        <mxCell id="qVP6cXRz635sdXnLdzKI-19" edge="1" parent="1" source="qVP6cXRz635sdXnLdzKI-3" style="curved=1;startArrow=none;endArrow=block;exitX=0.659;exitY=0.996;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="qVP6cXRz635sdXnLdzKI-8" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="qVP6cXRz635sdXnLdzKI-20" edge="1" parent="1" source="qVP6cXRz635sdXnLdzKI-3" style="curved=1;startArrow=none;endArrow=block;exitX=0.75;exitY=1;rounded=0;exitDx=0;exitDy=0;entryX=0.123;entryY=-0.015;entryDx=0;entryDy=0;entryPerimeter=0;" target="qVP6cXRz635sdXnLdzKI-9" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="306" y="490" />
-            </Array>
-            <mxPoint x="316" y="510" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="qVP6cXRz635sdXnLdzKI-21" edge="1" parent="1" source="qVP6cXRz635sdXnLdzKI-4" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" target="qVP6cXRz635sdXnLdzKI-10" value="">
