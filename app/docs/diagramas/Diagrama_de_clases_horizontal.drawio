@@ -1,19 +1,11 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="O1MQCzL2M63IscZ40vG5">
-    <mxGraphModel dx="2402" dy="1402" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#FFFFFF,#66B2FF)" math="0" shadow="0">
+    <mxGraphModel dx="1413" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#FFFFFF,#66B2FF)" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="PWHWsGKBVDAyTPzOsEWe-110" edge="1" parent="1" source="PWHWsGKBVDAyTPzOsEWe-1" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;strokeWidth=2;" target="PWHWsGKBVDAyTPzOsEWe-16">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="20" y="210" />
-              <mxPoint x="20" y="210" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E1D5E7,#9A76A4);strokeColor=light-dark(#9673A6,#4F4155);fontColor=light-dark(#000000,#000000);" value="PantallaHome" vertex="1">
-          <mxGeometry height="50" width="90" x="10" y="20" as="geometry" />
+          <mxGeometry height="50" width="90" x="950" y="70" as="geometry" />
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-2" parent="PWHWsGKBVDAyTPzOsEWe-1" style="text;strokeColor=light-dark(#000000,#4F4155);fillColor=light-dark(#392F3F,#E8BEFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="" vertex="1">
           <mxGeometry height="14" width="90" y="26" as="geometry" />
@@ -24,13 +16,12 @@
         <mxCell id="cw4jP3rNu2ta1lBhCykm-2" edge="1" parent="1" source="PWHWsGKBVDAyTPzOsEWe-7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;curved=0;strokeColor=light-dark(#000000,#000000);strokeWidth=2;" target="PWHWsGKBVDAyTPzOsEWe-16">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="190" y="90" />
-              <mxPoint x="52" y="90" />
+              <mxPoint x="53" y="90" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-7" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E1D5E7,#9A76A4);strokeColor=light-dark(#9673A6,#4F4155);fontColor=light-dark(#000000,#000000);" value="PantallaCrearEditarReceta" vertex="1">
-          <mxGeometry height="50" width="160" x="120" y="20" as="geometry" />
+          <mxGeometry height="50" width="160" x="30" y="20" as="geometry" />
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-8" parent="PWHWsGKBVDAyTPzOsEWe-7" style="text;strokeColor=light-dark(#000000,#4F4155);fillColor=light-dark(#392F3F,#E8BEFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="" vertex="1">
           <mxGeometry height="14" width="160" y="26" as="geometry" />
@@ -41,13 +32,13 @@
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-121" edge="1" parent="1" source="PWHWsGKBVDAyTPzOsEWe-10" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;strokeWidth=2;" target="PWHWsGKBVDAyTPzOsEWe-16">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="380" y="110" />
+              <mxPoint x="280" y="110" />
               <mxPoint x="80" y="110" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E1D5E7,#9A76A4);strokeColor=light-dark(#9673A6,#4F4155);fontColor=light-dark(#000000,#000000);" value="PantallaAñadirIngrediente" vertex="1">
-          <mxGeometry height="50" width="160" x="300" y="20" as="geometry" />
+          <mxGeometry height="50" width="160" x="210" y="20" as="geometry" />
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-11" parent="PWHWsGKBVDAyTPzOsEWe-10" style="text;strokeColor=light-dark(#000000,#4F4155);fillColor=light-dark(#392F3F,#E8BEFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="" vertex="1">
           <mxGeometry height="14" width="160" y="26" as="geometry" />
@@ -58,13 +49,13 @@
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-122" edge="1" parent="1" source="PWHWsGKBVDAyTPzOsEWe-13" style="edgeStyle=orthogonalEdgeStyle;shape=connector;curved=0;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;strokeWidth=2;" target="PWHWsGKBVDAyTPzOsEWe-16">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="540" y="130" />
+              <mxPoint x="450" y="130" />
               <mxPoint x="110" y="130" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=light-dark(#E1D5E7,#9A76A4);strokeColor=light-dark(#9673A6,#4F4155);fontColor=light-dark(#000000,#000000);" value="PantallaAñadirPaso" vertex="1">
-          <mxGeometry height="50" width="120" x="480" y="20" as="geometry" />
+          <mxGeometry height="50" width="120" x="388" y="20" as="geometry" />
         </mxCell>
         <mxCell id="PWHWsGKBVDAyTPzOsEWe-14" parent="PWHWsGKBVDAyTPzOsEWe-13" style="text;strokeColor=light-dark(#000000,#4F4155);fillColor=light-dark(#392F3F,#E8BEFF);align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="" vertex="1">
           <mxGeometry height="14" width="120" y="26" as="geometry" />
